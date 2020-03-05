@@ -11,6 +11,12 @@
 </head>
 <body>
 <%@ include file="partials/header.jsp" %>
+<c:if test="${message ne null}">
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>${message}</strong>
+</div>
+</c:if>
 <form action="">
 <input name="" type="text">
 </form>
