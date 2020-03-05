@@ -11,6 +11,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.Capstone7.dao.RecipeDao;
+import co.grandcircus.Capstone7.entities.Recipe;
+
 @Controller
 public class RecipeController {
 
@@ -28,10 +31,12 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-	public ModelAndView showResults(@RequestParam(required = false) String label,
-			@RequestParam(required = false) String dietLabels, @RequestParam(required = false) String healthLabels,
-			@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,
-			RedirectAttributes redir) {
+	public ModelAndView showResults(
+			@RequestParam(required = false) String label,
+			@RequestParam(required = false) String dietLabels, 
+			@RequestParam(required = false) String healthLabels,
+			@RequestParam(required = false) Integer from, 
+			@RequestParam(required = false) Integer to, RedirectAttributes redir) {
 		try {
 			List<Recipe> recipeList = rDao.findByCriteria(label, dietLabels, healthLabels, from, to);
 			return new ModelAndView("results", "list", recipeList);
@@ -41,9 +46,9 @@ public class RecipeController {
 		}
 	}
 
-	@RequestMapping("/fav")
-	public ModelAndView showFavorites() {
-		List<Recipe> favList = getFavorites();
-		return new ModelAndView("results", "list", favList);
-	}
+//	@RequestMapping("/fav")
+//	public ModelAndView showFavorites() {
+//		List<Recipe> favList = getFavorites();
+//		return new ModelAndView("results", "list", favList);
+//	}
 }
