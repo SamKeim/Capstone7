@@ -8,7 +8,7 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import co.grandcircus.Capstone7.Entities.Recipe;
+import co.grandcircus.Capstone7.entities.Recipe;
 
 @Component
 public class ApiService {
