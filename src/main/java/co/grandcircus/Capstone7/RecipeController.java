@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RecipeController {
 	
+
 	@Autowired
 	RecipeDao rDao;
 	
@@ -50,5 +51,5 @@ public class RecipeController {
 		List<Recipe> favList = getFavorites();
 		
 	}
-	
 }
+	
