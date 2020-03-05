@@ -12,10 +12,19 @@
 <title>Search</title>
 </head>
 <body>
-<label></label><input type="text" name="label">
-<label></label><input type="text" name="dietLabels">
-<label></label><input type="text" name="healthLabels">
-<label></label><input type="number" name="from">
-<label></label><input type="number" name="to">
+<c:if test="${message ne null}">
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>${message}</strong>
+</div>
+</c:if>
+<form action="/search" method="post">
+<label>Recipe Name</label><input type="text" name="label">
+<label>Diet labels</label><input type="text" name="dietLabels">
+<label>Health Restrictions</label><input type="text" name="healthLabels">
+<input type="hidden" name="from" val="0">
+<label>Recipes on first page</label><input type="number" name="to">
+<button>Search!!</button>
+</form>
 </body>
 </html>
