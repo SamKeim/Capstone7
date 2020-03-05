@@ -7,4 +7,5 @@ import org.springframework.web.client.RestTemplate;
 public class ApiService {
 
 	private RestTemplate rt;
+	
 }
