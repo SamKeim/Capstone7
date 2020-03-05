@@ -13,43 +13,37 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RecipeController {
-	
 
 	@Autowired
 	RecipeDao rDao;
-	
+
 	@RequestMapping("/")
 	public ModelAndView showHome() {
 		return new ModelAndView("index");
 	}
-	
+
 	@RequestMapping("/search")
 	public ModelAndView showSearch() {
 		return new ModelAndView("search");
 	}
-	
+
 	@PostMapping("/search")
-	public ModelAndView showResults(
-			@RequestParam(required=false) String label,
-			@RequestParam(required=false) String dietLabels,
-			@RequestParam(required=false) String healthLabels,
-			@RequestParam(required=false) Integer from,
-			@RequestParam(required=false) Integer to,
-			RedirectAttributes redir
-			) {
+	public ModelAndView showResults(@RequestParam(required = false) String label,
+			@RequestParam(required = false) String dietLabels, @RequestParam(required = false) String healthLabels,
+			@RequestParam(required = false) Integer from, @RequestParam(required = false) Integer to,
+			RedirectAttributes redir) {
 		try {
-		List<Recipe> recipeList = rDao.findByCriteria(label, dietLabels, healthLabels, from, to);
-		return new ModelAndView("result", "list", recipeList);
+			List<Recipe> recipeList = rDao.findByCriteria(label, dietLabels, healthLabels, from, to);
+			return new ModelAndView("results", "list", recipeList);
 		} catch (RestClientException e) {
 			redir.addFlashAttribute("message", "No results found!");
-			return new ModelAndView("/search");
+			return new ModelAndView("redirect:/search");
 		}
 	}
-	
+
 	@RequestMapping("/fav")
 	public ModelAndView showFavorites() {
 		List<Recipe> favList = getFavorites();
-		
+		return new ModelAndView("results", "list", favList);
 	}
 }
-	
