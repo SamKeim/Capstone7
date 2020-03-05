@@ -7,14 +7,15 @@
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css" rel="stylesheet" integrity="sha384-2kOE+STGAkgemIkUbGtoZ8dJLqfvJ/xzRnimSkQN7viOfwRvWseF7lqcuNXmjwrL" crossorigin="anonymous">
 <link href="/style.css" rel="stylesheet" />
 <head>
+<%@ include file="partials/header.jsp" %>
 <meta charset="ISO-8859-1">
-<title>Recipes 'R' Us</title>
+<title>Search</title>
 </head>
 <body>
-<%@ include file="partials/header.jsp" %>
-<form action="">
-<input name="" type="text">
-<button>Search</button>
-</form>
+<label></label><input type="text" name="label">
+<label></label><input type="text" name="dietLabels">
+<label></label><input type="text" name="healthLabels">
+<label></label><input type="number" name="from">
+<label></label><input type="number" name="to">
 </body>
 </html>
