@@ -1,5 +1,6 @@
 package co.grandcircus.Capstone7;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,27 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/fav")
-	public ModelAndView showFavorites() {
+	public ModelAndView showFavorites(
+			RedirectAttributes redir
+			) {
 		List<Recipe> favList = getFavorites();
+		if(favList.size() == 0) {
+			redir.addFlashAttribute("message", "No Favorites Found");
+			return new ModelAndView ("redirect:/search");
+		}
 		return new ModelAndView("results", "list", favList);
 	}
+	
+	@RequestMapping("/display")
+	public ModelAndView showSingle(
+			RedirectAttributes redir,
+			@RequestParam(required=false) String url
+			) {
+		if (url.isEmpty() || url == null) {
+			redir.addFlashAttribute("message", "Recipe not found");
+			return new ModelAndView("redirect:/search");
+		}
+		return new ModelAndView("display", "url", url);
+	}
+	
 }
