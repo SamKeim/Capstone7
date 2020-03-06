@@ -46,14 +46,15 @@ public class RecipeController {
 
 			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
 			
-//			List<Hit> hitList = results.getHits();
-//			List<Recipe> recipeList = new ArrayList<>();
-//			for (Hit hit : hitList) {
-//				recipeList.add(hit.getRecipe());
-//			}
+			List<Hit> hitList = results.getHits();
+			List<Recipe> recipeList = new ArrayList<>();
+			for (Hit hit : hitList) {
+				recipeList.add(hit.getRecipe());
+			}
 			ModelAndView mav = new ModelAndView("results");
-//			mav.addObject("list", recipeList);
+			mav.addObject("list", recipeList);
 			mav.addObject("searchResults", results);
+//			return new ModelAndView("index");
 			return mav;
 		} catch (RestClientException e) {
 			e.printStackTrace();
@@ -61,6 +62,7 @@ public class RecipeController {
 			return new ModelAndView("redirect:/search");
 		}
 	}
+	
 //	@RequestMapping("/fav")
 //	public ModelAndView showFavorites(
 //			RedirectAttributes redir

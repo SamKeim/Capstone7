@@ -9,8 +9,6 @@ public class FavoriteRecipe {
 	
 	private String url;
 	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -22,13 +20,6 @@ public class FavoriteRecipe {
 	}
 	public void setUrl(String url) {
 		this.url = url;
-	}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "FavoriteRecipe [id=" + id + ", url=" + url + "]";
 	}
 	
 }
