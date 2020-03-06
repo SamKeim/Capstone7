@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+<<<<<<< HEAD
 
 import co.grandcircus.Capstone7.entities.Recipe;
+=======
+import co.grandcircus.Capstone7.Entities.Recipe;
+>>>>>>> ce5e905c557d3d95ef11eea535f9194bee47ee66
 
 @Controller
 public class RecipeController {

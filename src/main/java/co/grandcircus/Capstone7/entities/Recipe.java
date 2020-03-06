@@ -1,4 +1,4 @@
-package co.grandcircus.Capstone7.entities;
+package co.grandcircus.Capstone7.Entities;
 
 import java.util.Arrays;
 
@@ -6,17 +6,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class Recipe {
+	
 	private String uri;
 	private String url;
 	private Ingredient[] ingredients;
+	@JsonProperty("label")
 	private String lbl;
+	@JsonProperty("image")
 	private String img;
+	@JsonProperty("source")
 	private String src;
 	private Double yield;
+	@JsonProperty("dietLabels")
 	private String[] dietLbl;
+	@JsonProperty("healthLabels")
 	private String[] healthLbl;
 	private String[] ingredientLines;
 	private Double calories;
+	@JsonProperty("totalTime")
 	private Double time;
 	// TODO: see private Boolean isFav;
 
