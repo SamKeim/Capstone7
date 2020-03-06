@@ -40,7 +40,7 @@
 	<option value="Peanut-Free">Peanut Free</option>
 </select>
 </div>
-<input type="hidden" name="from" val="0">
+<input type="hidden" name="fromInt" val=0>
 <button>Search!!</button>
 </form>
 </body>

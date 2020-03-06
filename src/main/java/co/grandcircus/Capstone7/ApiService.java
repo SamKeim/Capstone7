@@ -4,7 +4,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import co.grandcircus.Capstone7.Entities.Recipe;
@@ -32,9 +31,10 @@ public class ApiService {
 		return tempList[0];
 	}
 
-	public SearchResult findByCriteria(String label, Integer fromInt){
+	public SearchResult findByCriteria(String label, Integer fromInt) {
 //		Integer toInt = fromInt + 10;
-		String urlString = "https://api.edamam.com/search?q=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		String urlString = "https://api.edamam.com/search?q=" + label
+				+ "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 		System.out.println(urlString);
 		System.out.println("Tester");
 //		if (!(dietLabel.isEmpty()) || (dietLabel != null)) {
@@ -45,7 +45,7 @@ public class ApiService {
 //			url = url + "&health=" + healthLabel;
 //		}
 //		urlString += "&from=" + fromInt + "&to=" + toInt;
-		
+
 		SearchResult returnResult = rt.getForObject(urlString, SearchResult.class);
 		System.out.println("Tester 2!");
 		return returnResult;
