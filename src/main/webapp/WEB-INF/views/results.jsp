@@ -9,7 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${list}" ></c:forEach>
+<c:forEach items="${list}" var="item">
+
+<div class="card border-info mb-3" style="max-width: 20rem;">
+  <div class="card-header">${item.label}</div>
+  <div class="card-body">
+    <img src="${item.image}"\>
+    <p class="card-text">${item.dietLabel} and ${item.healthLabel}</p>
+    <a href="${item.url}">Recipe</a>
+  </div>
+</div>
+
+</c:forEach>
+
 
 
 <div>
