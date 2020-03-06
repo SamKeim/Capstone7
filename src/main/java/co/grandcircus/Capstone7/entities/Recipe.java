@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class Recipe {
 	private String uri;
 	private String url;
