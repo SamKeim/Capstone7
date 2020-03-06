@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <c:forEach items="${list}" var="item">
 
 <div class="card border-info mb-3" style="max-width: 20rem;">
@@ -21,7 +22,6 @@
 </div>
 
 </c:forEach>
-
 <div>
   <ul class="pagination pagination-lg">
     <li class="page-item active">
@@ -116,7 +116,7 @@
      </form>
     </li>
   </ul>
+ 
 </div>
-
 </body>
 </html>

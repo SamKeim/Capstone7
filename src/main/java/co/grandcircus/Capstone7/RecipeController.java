@@ -43,16 +43,15 @@ public class RecipeController {
 			@RequestParam(required=false) Integer from, 
 			RedirectAttributes redir) {
 		try {
-
 			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
 			
-//			List<Hit> hitList = results.getHits();
-//			List<Recipe> recipeList = new ArrayList<>();
-//			for (Hit hit : hitList) {
-//				recipeList.add(hit.getRecipe());
-//			}
+			List<Hit> hitList = results.getHits();
+			List<Recipe> recipeList = new ArrayList<>();
+			for (Hit hit : hitList) {
+				recipeList.add(hit.getRecipe());
+			}
 			ModelAndView mav = new ModelAndView("results");
-//			mav.addObject("list", recipeList);
+			mav.addObject("list", recipeList);
 			mav.addObject("searchResults", results);
 			return mav;
 		} catch (RestClientException e) {
