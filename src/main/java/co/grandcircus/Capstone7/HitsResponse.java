@@ -10,4 +10,6 @@ public class HitsResponse {
 	@JsonProperty("hits")
 	private List<Recipe> recipes;
 	
+	
+	//TODO: print out recipes;
 }
