@@ -14,7 +14,7 @@
 <%@ include file="partials/header.jsp" %>
 <form method="post" action="/search">
 <input name="lbl" type="text">
-<button>Search</button>
+<button type="submit">Search</button>
 </form>
 </body>
 </html>

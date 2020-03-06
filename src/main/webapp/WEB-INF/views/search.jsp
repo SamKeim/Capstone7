@@ -41,7 +41,7 @@
 </select>
 </div>
 <input type="hidden" name="from" val="0">
-<button>Search!!</button>
+<button type="submit">Search!!</button>
 </form>
 </body>
 </html>

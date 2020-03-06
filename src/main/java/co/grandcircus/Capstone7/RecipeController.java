@@ -32,7 +32,6 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-
 	public ModelAndView showResults(
 			@RequestParam String lbl,
 			@RequestParam(required=false) String dietLbls, 
