@@ -32,9 +32,9 @@ public class ApiService {
 		return tempList[0];
 	}
 	
+
 	public SearchResult findByCriteria(String label, String dietLabel, String healthLabel, Integer from){
 		Integer to = from + 10;
-		
 		String url = "https://api.edamam.com/search?r=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 
 		if (!(dietLabel.isEmpty()) || (dietLabel != null)) {

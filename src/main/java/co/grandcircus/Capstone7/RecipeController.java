@@ -37,13 +37,13 @@ public class RecipeController {
 
 	@PostMapping("/search")
 	public ModelAndView showResults(
-			@RequestParam(required=false) String label,
-			@RequestParam(required=false) String dietLabels, 
-			@RequestParam(required=false) String healthLabels,
-			@RequestParam(required=false) Integer from, 
+			@RequestParam(required = true) String lbl,
+			@RequestParam(required = false) String dietLbls, 
+			@RequestParam(required = false) String healthLbls,
+			@RequestParam(required = false) Integer from, 
 			RedirectAttributes redir) {
 		try {
-			SearchResult results = apiServ.findByCriteria(label, dietLabels, healthLabels, from);
+			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
 			List<Hit> hitList = results.getHits();
 			List<Recipe> recipeList = new ArrayList<>();
 			for (Hit hit : hitList) {
