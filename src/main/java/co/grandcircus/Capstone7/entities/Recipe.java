@@ -1,12 +1,11 @@
-package co.grandcircus.Capstone7.Entities;
+package co.grandcircus.Capstone7.entities;
 
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class Recipe {
-	
+
 	private String uri;
 	private String url;
 	private Ingredient[] ingredients;
@@ -27,8 +26,6 @@ public class Recipe {
 	private Double time;
 	// TODO: see private Boolean isFav;
 
-	
-	
 	public String getUrl() {
 		return url;
 	}
@@ -141,8 +138,6 @@ public class Recipe {
 		this.img = image;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "Recipe [uri=" + uri + ", url=" + url + ", ingredients=" + Arrays.toString(ingredients) + ", lbl=" + lbl
@@ -150,6 +145,5 @@ public class Recipe {
 				+ ", healthLbl=" + Arrays.toString(healthLbl) + ", ingredientLines=" + Arrays.toString(ingredientLines)
 				+ ", calories=" + calories + ", time=" + time + "]";
 	}
-	
 
 }

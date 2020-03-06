@@ -1,4 +1,4 @@
-package co.grandcircus.Capstone7.Entities;
+package co.grandcircus.Capstone7.entities;
 
 public class Ingredient {
 	private String text;

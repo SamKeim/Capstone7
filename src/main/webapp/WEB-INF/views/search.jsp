@@ -19,11 +19,29 @@
 </div>
 </c:if>
 <form action="/search" method="post">
-<label>Recipe Name</label><input type="text" name="label">
-<label>Diet labels</label><input type="text" name="dietLabels">
-<label>Health Restrictions</label><input type="text" name="healthLabels">
+<div>
+<label>Recipe Name</label><input type="text" name="label" required>
+</div>
+<div>
+<label>Diet</label>
+<select name="dietLabel">
+	<option value=null>None</option>
+	<option value="Low-Carb">Low Carb</option>
+	<option value="Low-Fat">Low Fat</option>
+	<option value="High-Protein">High Protein</option>
+</select>
+</div>
+<div>
+<label>Allergies</label>
+<select name="healthLabel">
+	<option value=null>None</option>
+	<option value="Alcohol-Free">Alcohol Free</option>
+	<option value="Tree-Nut-Free">Tree Nut Free</option>
+	<option value="Peanut-Free">Peanut Free</option>
+</select>
+</div>
 <input type="hidden" name="from" val="0">
-<label>Recipes on first page</label><input type="number" name="to">
+<input type="hidden" name="to" val="9">
 <button>Search!!</button>
 </form>
 </body>

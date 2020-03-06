@@ -1,4 +1,4 @@
-package co.grandcircus.Capstone7.Entities;
+package co.grandcircus.Capstone7.entities;
 
 import javax.persistence.*;
 
