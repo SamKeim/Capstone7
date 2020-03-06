@@ -1,8 +1,5 @@
 package co.grandcircus.Capstone7;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +9,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.Capstone7.Entities.*;
+
+import co.grandcircus.Capstone7.Entities.SearchResult;
 
 @Controller
 public class RecipeController {
@@ -34,23 +32,31 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-	public ModelAndView showResults(@RequestParam(required = true) String lbl,
-			@RequestParam(required = false) String dietLbls, @RequestParam(required = false) String healthLbls,
-			@RequestParam(required = false) Integer from, RedirectAttributes redir) {
-		try {
 
-			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
-			List<Hit> hitList = results.getHits();
-			List<Recipe> recipeList = new ArrayList<>();
-			for (Hit hit : hitList) {
-				recipeList.add(hit.getRecipe());
-			}
+	public ModelAndView showResults(
+			@RequestParam String lbl,
+			@RequestParam(required=false) String dietLbls, 
+			@RequestParam(required=false) String healthLbls,
+			@RequestParam(required=false) Integer from, 
+			RedirectAttributes redir) {
+		try {
+//			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
+			System.out.println(lbl);
+			
+			SearchResult results = apiServ.findByCriteria(lbl, from);
+			
+//			List<Hit> hitList = results.getHits();
+//			List<Recipe> recipeList = new ArrayList<>();
+//			for (Hit hit : hitList) {
+//				recipeList.add(hit.getRecipe());
+//			}
 			ModelAndView mav = new ModelAndView("results");
-			mav.addObject("list", recipeList);
-			mav.addObject("searchResults", results);
+//			mav.addObject("list", recipeList);
+//			mav.addObject("searchResults", results);
 			return mav;
 
 		} catch (RestClientException e) {
+			e.printStackTrace();
 			redir.addFlashAttribute("message", "No results found!");
 			return new ModelAndView("redirect:/search");
 		}
