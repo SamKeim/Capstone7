@@ -25,22 +25,22 @@
 <div>
 <label>Diet</label>
 <select name="dietLbls">
-	<option value=null>None</option>
-	<option value="Low-Carb">Low Carb</option>
-	<option value="Low-Fat">Low Fat</option>
-	<option value="High-Protein">High Protein</option>
+	<option value="">None</option>
+	<option value="low-carb">Low Carb</option>
+	<option value="low-fat">Low Fat</option>
+	<option value="high-protein">High Protein</option>
 </select>
 </div>
 <div>
 <label>Allergies</label>
 <select name="healthLbls">
-	<option value=null>None</option>
-	<option value="Alcohol-Free">Alcohol Free</option>
-	<option value="Tree-Nut-Free">Tree Nut Free</option>
-	<option value="Peanut-Free">Peanut Free</option>
+	<option value="">None</option>
+	<option value="alcohol-free">Alcohol Free</option>
+	<option value="tree-nut-free">Tree Nut Free</option>
+	<option value="peanut-free">Peanut Free</option>
 </select>
 </div>
-<input type="hidden" name="fromInt" val=0>
+<input type="hidden" name="from" value=0>
 <button>Search!!</button>
 </form>
 </body>
