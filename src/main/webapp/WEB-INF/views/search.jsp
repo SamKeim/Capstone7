@@ -24,7 +24,7 @@
 </div>
 <div>
 <label>Diet</label>
-<select name="dietLbl">
+<select name="dietLbls">
 	<option value=null>None</option>
 	<option value="Low-Carb">Low Carb</option>
 	<option value="Low-Fat">Low Fat</option>
@@ -33,7 +33,7 @@
 </div>
 <div>
 <label>Allergies</label>
-<select name="healthLbl">
+<select name="healthLbls">
 	<option value=null>None</option>
 	<option value="Alcohol-Free">Alcohol Free</option>
 	<option value="Tree-Nut-Free">Tree Nut Free</option>
@@ -41,8 +41,7 @@
 </select>
 </div>
 <input type="hidden" name="from" val="0">
-<input type="hidden" name="to" val="9">
-<button>Search!!</button>
+<buttontype="submit">Search!!</button>
 </form>
 </body>
 </html>
