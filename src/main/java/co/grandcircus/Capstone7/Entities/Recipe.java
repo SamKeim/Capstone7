@@ -1,6 +1,6 @@
 package co.grandcircus.Capstone7.Entities;
 
-import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,7 +8,7 @@ public class Recipe {
 
 	private String uri;
 	private String url;
-	private Ingredient[] ingredients;
+	private List<Ingredient> ingredients;
 	@JsonProperty("label")
 	private String lbl;
 	@JsonProperty("image")
@@ -17,14 +17,13 @@ public class Recipe {
 	private String src;
 	private Double yield;
 	@JsonProperty("dietLabels")
-	private String[] dietLbl;
+	private List<String> dietLbl;
 	@JsonProperty("healthLabels")
-	private String[] healthLbl;
-	private String[] ingredientLines;
+	private List<String> healthLbl;
+	private List<String> ingredientLines;
 	private Double calories;
 	@JsonProperty("totalTime")
 	private Double time;
-	// TODO: see private Boolean isFav;
 	public String getUri() {
 		return uri;
 	}
@@ -37,10 +36,10 @@ public class Recipe {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public Ingredient[] getIngredients() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
-	public void setIngredients(Ingredient[] ingredients) {
+	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 	public String getLbl() {
@@ -67,22 +66,22 @@ public class Recipe {
 	public void setYield(Double yield) {
 		this.yield = yield;
 	}
-	public String[] getDietLbl() {
+	public List<String> getDietLbl() {
 		return dietLbl;
 	}
-	public void setDietLbl(String[] dietLbl) {
+	public void setDietLbl(List<String> dietLbl) {
 		this.dietLbl = dietLbl;
 	}
-	public String[] getHealthLbl() {
+	public List<String> getHealthLbl() {
 		return healthLbl;
 	}
-	public void setHealthLbl(String[] healthLbl) {
+	public void setHealthLbl(List<String> healthLbl) {
 		this.healthLbl = healthLbl;
 	}
-	public String[] getIngredientLines() {
+	public List<String> getIngredientLines() {
 		return ingredientLines;
 	}
-	public void setIngredientLines(String[] ingredientLines) {
+	public void setIngredientLines(List<String> ingredientLines) {
 		this.ingredientLines = ingredientLines;
 	}
 	public Double getCalories() {
@@ -96,6 +95,12 @@ public class Recipe {
 	}
 	public void setTime(Double time) {
 		this.time = time;
+	}
+	@Override
+	public String toString() {
+		return "Recipe [uri=" + uri + ", url=" + url + ", ingredients=" + ingredients + ", lbl=" + lbl + ", img=" + img
+				+ ", src=" + src + ", yield=" + yield + ", dietLbl=" + dietLbl + ", healthLbl=" + healthLbl
+				+ ", ingredientLines=" + ingredientLines + ", calories=" + calories + ", time=" + time + "]";
 	}
 
 }
