@@ -4,11 +4,20 @@ import java.util.List;
 
 public class SearchResult {
 	
+	private String q;
 	private List<Hit> hits;
 	private Integer count;
 	private Boolean more;
 	private Integer to;
 	private Integer from;
+	
+	public String getQ() {
+		return q;
+	}
+	
+	public void setQ(String q) {
+		this.q = q;
+	}
 	
 	public Integer getTo() {
 		return to;

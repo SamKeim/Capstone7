@@ -13,7 +13,7 @@
 <c:forEach items="${list}" var="item">
 
 <div class="card border-info mb-3" style="max-width: 20rem;">
-  <div class="card-header">${item.lbl}</div>
+  <div class="card-header"></div>
   <div class="card-body">
     <img src="${item.img}">
     <p class="card-text">${item.dietLbl} and ${item.healthLbl}</p>
@@ -26,93 +26,20 @@
   <ul class="pagination pagination-lg">
     <li class="page-item active">
     <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
+      <input type="text" name="lbl" value="${searchResults.q}">
+      <input type="hidden" name="dietLbl" value="">
+      <input type="hidden" name="healthLbl" value="">
       <input type="hidden" name="from" value=0>
       <button class="page-link">1</button>
      </form>
     </li>
    <li class="page-item active">
     <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
+      <input type="hidden" name="lbl" value="${searchResults.q}">
+      <input type="hidden" name="dietLbl" value="">
+      <input type="hidden" name="healthLbl" value="">
       <input type="hidden" name="from" value=10>
       <button class="page-link">2</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=20>
-      <button class="page-link">3</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=30>
-      <button class="page-link">4</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=40>
-      <button class="page-link">5</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=50>
-      <button class="page-link">6</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=60>
-      <input type="hidden" name="to" value=69>
-      <button class="page-link">7</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=70>
-      <button class="page-link">8</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLabel}">
-      <input type="hidden" name="healthLbl" value="${list.healthLabel}">
-      <input type="hidden" name="from" value=80>
-      <button class="page-link">9</button>
-     </form>
-    </li>
-    <li class="page-item active">
-    <form method="post" action="/search">
-      <input type="hidden" name="lbl" value="${list.lbl}">
-      <input type="hidden" name="dietLbl" value="${list.dietLbl}">
-      <input type="hidden" name="healthLbl" value="${list.healthLbl}">
-      <input type="hidden" name="from" value=90>
-      <button class="page-link">10</button>
      </form>
     </li>
   </ul>
