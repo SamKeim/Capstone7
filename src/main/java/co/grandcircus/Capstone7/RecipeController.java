@@ -1,6 +1,5 @@
 package co.grandcircus.Capstone7;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +11,16 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.dao.RecipeDao;
-import co.grandcircus.Capstone7.entities.Recipe;
 
 @Controller
 public class RecipeController {
 
 	@Autowired
 	RecipeDao rDao;
+	@Autowired
+	ApiService apiServ;
 
 	@RequestMapping("/")
 	public ModelAndView showHome() {
@@ -39,7 +40,7 @@ public class RecipeController {
 			@RequestParam(required = false) Integer from, 
 			@RequestParam(required = false) Integer to, RedirectAttributes redir) {
 		try {
-			List<Recipe> recipeList = rDao.findByCriteria(label, dietLabels, healthLabels, from, to);
+			List<Recipe> recipeList = apiServ.findByCriteria(label, dietLabels, healthLabels, from, to);
 			return new ModelAndView("results", "list", recipeList);
 		} catch (RestClientException e) {
 			redir.addFlashAttribute("message", "No results found!");
@@ -47,17 +48,17 @@ public class RecipeController {
 		}
 	}
 
-	@RequestMapping("/fav")
-	public ModelAndView showFavorites(
-			RedirectAttributes redir
-			) {
-		List<Recipe> favList = getFavorites();
-		if(favList.size() == 0) {
-			redir.addFlashAttribute("message", "No Favorites Found");
-			return new ModelAndView ("redirect:/search");
-		}
-		return new ModelAndView("results", "list", favList);
-	}
+//	@RequestMapping("/fav")
+//	public ModelAndView showFavorites(
+//			RedirectAttributes redir
+//			) {
+//		List<Recipe> favList = getFavorites();
+//		if(favList.size() == 0) {
+//			redir.addFlashAttribute("message", "No Favorites Found");
+//			return new ModelAndView ("redirect:/search");
+//		}
+//		return new ModelAndView("results", "list", favList);
+//	}
 	
 	@RequestMapping("/display")
 	public ModelAndView showSingle(
@@ -70,4 +71,4 @@ public class RecipeController {
 		}
 		return new ModelAndView("display", "uri", uri);
 	}
-	
+}

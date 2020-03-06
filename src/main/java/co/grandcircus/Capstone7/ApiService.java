@@ -31,7 +31,16 @@ public class ApiService {
 		return tempList[0];
 	}
 	
-	public List<Recipe> findByCriteria(String label, List<String> dietLabels, List<String> healthLabels, Integer from, Integer to){
+	public List<Recipe> findByCriteria(String label, String dietLabel, String healthLabel, Integer from, Integer to){
+		String search = "";
+		String url = "https://api.edamam.com/search?r=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+
+		if (dietLabel != null) {
+			url = url + "&diet=" + dietLabel;
+		}
+		
+		Recipe[] tempList = rt.getForObject(url, Recipe[].class);
+		
 		return null;
 	}
 	
