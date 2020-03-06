@@ -20,11 +20,11 @@
 </c:if>
 <form action="/search" method="post">
 <div>
-<label>Recipe Name</label><input type="text" name="label" required>
+<label>Recipe Name</label><input type="text" name="lbl" required>
 </div>
 <div>
 <label>Diet</label>
-<select name="dietLabel">
+<select name="dietLbl">
 	<option value=null>None</option>
 	<option value="Low-Carb">Low Carb</option>
 	<option value="Low-Fat">Low Fat</option>
@@ -33,7 +33,7 @@
 </div>
 <div>
 <label>Allergies</label>
-<select name="healthLabel">
+<select name="healthLbl">
 	<option value=null>None</option>
 	<option value="Alcohol-Free">Alcohol Free</option>
 	<option value="Tree-Nut-Free">Tree Nut Free</option>

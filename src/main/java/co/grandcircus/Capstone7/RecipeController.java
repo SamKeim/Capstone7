@@ -11,7 +11,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.Capstone7.entities.Recipe;
+import co.grandcircus.Capstone7.Entities.Recipe;
 
 @Controller
 public class RecipeController {
@@ -34,13 +34,13 @@ public class RecipeController {
 
 	@PostMapping("/search")
 	public ModelAndView showResults(
-			@RequestParam(required = false) String label,
-			@RequestParam(required = false) String dietLabels, 
-			@RequestParam(required = false) String healthLabels,
+			@RequestParam(required = true) String lbl,
+			@RequestParam(required = false) String dietLbls, 
+			@RequestParam(required = false) String healthLbls,
 			@RequestParam(required = false) Integer from, 
 			@RequestParam(required = false) Integer to, RedirectAttributes redir) {
 		try {
-			List<Recipe> recipeList = apiServ.findByCriteria(label, dietLabels, healthLabels, from, to);
+			List<Recipe> recipeList = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from, to);
 			return new ModelAndView("results", "list", recipeList);
 		} catch (RestClientException e) {
 			redir.addFlashAttribute("message", "No results found!");
