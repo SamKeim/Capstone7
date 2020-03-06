@@ -22,8 +22,6 @@
 
 </c:forEach>
 
-
-
 <div>
   <ul class="pagination pagination-lg">
     <li class="page-item active">
@@ -32,7 +30,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=0>
-      <input type="hidden" name="to" value=9>
       <button class="page-link">1</button>
      </form>
     </li>
@@ -42,7 +39,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=10>
-      <input type="hidden" name="to" value=19>
       <button class="page-link">2</button>
      </form>
     </li>
@@ -52,7 +48,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=20>
-      <input type="hidden" name="to" value=29>
       <button class="page-link">3</button>
      </form>
     </li>
@@ -62,7 +57,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=30>
-      <input type="hidden" name="to" value=39>
       <button class="page-link">4</button>
      </form>
     </li>
@@ -72,7 +66,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=40>
-      <input type="hidden" name="to" value=49>
       <button class="page-link">5</button>
      </form>
     </li>
@@ -82,7 +75,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=50>
-      <input type="hidden" name="to" value=59>
       <button class="page-link">6</button>
      </form>
     </li>
@@ -102,7 +94,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=70>
-      <input type="hidden" name="to" value=79>
       <button class="page-link">8</button>
      </form>
     </li>
@@ -112,7 +103,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLabel}">
       <input type="hidden" name="healthLbl" value="${list.healthLabel}">
       <input type="hidden" name="from" value=80>
-      <input type="hidden" name="to" value=89>
       <button class="page-link">9</button>
      </form>
     </li>
@@ -122,7 +112,6 @@
       <input type="hidden" name="dietLbl" value="${list.dietLbl}">
       <input type="hidden" name="healthLbl" value="${list.healthLbl}">
       <input type="hidden" name="from" value=90>
-      <input type="hidden" name="to" value=99>
       <button class="page-link">10</button>
      </form>
     </li>
