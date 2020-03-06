@@ -12,7 +12,7 @@
 </head>
 <body>
 <%@ include file="partials/header.jsp" %>
-<form action="/search">
+<form method="post" action="/search">
 <input name="lbl" type="text">
 <button>Search</button>
 </form>
