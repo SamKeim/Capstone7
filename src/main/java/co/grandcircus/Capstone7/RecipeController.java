@@ -11,16 +11,21 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+<<<<<<< HEAD
 import co.grandcircus.Capstone7.Entities.Recipe;
+=======
+import co.gc.apidemostarter.ApiService;
+>>>>>>> 59182b79e5ef092f9037aa3b145182d42ea45b7a
 import co.grandcircus.Capstone7.dao.RecipeDao;
 
 @Controller
 public class RecipeController {
 
+//	@Autowired
+//	RecipeDao rDao;
+	
 	@Autowired
-	RecipeDao rDao;
-	@Autowired
-	ApiService apiServ;
+	private ApiService apiServ;
 
 	@RequestMapping("/")
 	public ModelAndView showHome() {
@@ -47,7 +52,6 @@ public class RecipeController {
 			return new ModelAndView("redirect:/search");
 		}
 	}
-
 //	@RequestMapping("/fav")
 //	public ModelAndView showFavorites(
 //			RedirectAttributes redir
