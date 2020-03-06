@@ -14,7 +14,7 @@ import co.grandcircus.Capstone7.Entities.SearchResult;
 public class ApiService {
 
 	private RestTemplate rt;
-	
+
 	// initialization block that runs when a new instance of the class is created
 	// loaded before the constructor
 	{
@@ -24,13 +24,13 @@ public class ApiService {
 		};
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
-	
+
 	public Recipe displayRecipe(String uri) {
-		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		String url = "https://api.edamam.com/search?r=" + uri
+				+ "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 		Recipe[] tempList = rt.getForObject(url, Recipe[].class);
 		return tempList[0];
 	}
-	
 
 	public SearchResult findByCriteria(String label, Integer fromInt){
 //		Integer toInt = fromInt + 10;
@@ -50,6 +50,5 @@ public class ApiService {
 		System.out.println("Tester 2!");
 		return returnResult;
 	}
-	
+
 }
- 

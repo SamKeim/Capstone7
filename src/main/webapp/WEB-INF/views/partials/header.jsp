@@ -16,9 +16,5 @@
         <a class="nav-link" href="/search">Search</a>
       </li>
     </ul>
-    <form action="/search" class="form-inline my-2 my-lg-0" method="post">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Basic Search</button>
-    </form>
   </div>
 </nav>
