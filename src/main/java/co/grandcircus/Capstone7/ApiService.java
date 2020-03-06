@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.grandcircus.Capstone7.Entities.Recipe;
+import co.grandcircus.Capstone7.Entities.SearchResult;
 
 @Component
 public class ApiService {
@@ -31,17 +32,24 @@ public class ApiService {
 		return tempList[0];
 	}
 	
-	public List<Recipe> findByCriteria(String label, String dietLabel, String healthLabel, Integer from, Integer to){
-		String search = "";
+	public SearchResult findByCriteria(String label, String dietLabel, String healthLabel, Integer from){
+		Integer to = from + 10;
+		
 		String url = "https://api.edamam.com/search?r=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 
-		if (dietLabel != null) {
+		if (!(dietLabel.isEmpty()) || (dietLabel != null)) {
 			url = url + "&diet=" + dietLabel;
 		}
 		
-		Recipe[] tempList = rt.getForObject(url, Recipe[].class);
+		if(!(healthLabel.isEmpty()) || (healthLabel != null)) {
+			url = url + "&health=" + healthLabel;
+		}
+		url += "&from=" + from + "&to=" + to;
 		
-		return null;
+		SearchResult returnResult = rt.getForObject(url, SearchResult.class);
+		
+		return returnResult;
 	}
 	
 }
+ 
