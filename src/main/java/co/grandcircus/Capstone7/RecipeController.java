@@ -12,7 +12,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.Capstone7.entities.*;
+import co.grandcircus.Capstone7.Entities.*;
 
 @Controller
 public class RecipeController {

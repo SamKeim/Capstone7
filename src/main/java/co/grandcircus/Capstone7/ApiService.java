@@ -27,7 +27,7 @@ public class ApiService {
 	}
 	
 	public Recipe displayRecipe(String uri) {
-		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		String url = "https://api.edamam.com/search?q=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 		Recipe[] tempList = rt.getForObject(url, Recipe[].class);
 		return tempList[0];
 	}
@@ -35,7 +35,7 @@ public class ApiService {
 
 	public SearchResult findByCriteria(String label, String dietLabel, String healthLabel, Integer from){
 		Integer to = from + 10;
-		String url = "https://api.edamam.com/search?r=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		String url = "https://api.edamam.com/search?q=" + label + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 
 		if (!(dietLabel.isEmpty()) || (dietLabel != null)) {
 			url = url + "&diet=" + dietLabel;
