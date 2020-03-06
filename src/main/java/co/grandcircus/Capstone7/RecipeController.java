@@ -1,5 +1,6 @@
 package co.grandcircus.Capstone7;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,14 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.Capstone7.Entities.Recipe;
-import co.gc.apidemostarter.ApiService;
-import co.grandcircus.Capstone7.dao.RecipeDao;
+import co.grandcircus.Capstone7.entities.*;
 
 @Controller
 public class RecipeController {
 
 //	@Autowired
 //	RecipeDao rDao;
-	
+//	
 	@Autowired
 	private ApiService apiServ;
 
@@ -35,15 +34,22 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-	public ModelAndView showResults(
-			@RequestParam(required = false) String label,
-			@RequestParam(required = false) String dietLabels, 
-			@RequestParam(required = false) String healthLabels,
-			@RequestParam(required = false) Integer from, 
-			@RequestParam(required = false) Integer to, RedirectAttributes redir) {
+	public ModelAndView showResults(@RequestParam(required = true) String lbl,
+			@RequestParam(required = false) String dietLbls, @RequestParam(required = false) String healthLbls,
+			@RequestParam(required = false) Integer from, RedirectAttributes redir) {
 		try {
-			List<co.grandcircus.Capstone7.entities.Recipe> recipeList = apiServ.findByCriteria(label, dietLabels, healthLabels, from, to);
-			return new ModelAndView("results", "list", recipeList);
+
+			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
+			List<Hit> hitList = results.getHits();
+			List<Recipe> recipeList = new ArrayList<>();
+			for (Hit hit : hitList) {
+				recipeList.add(hit.getRecipe());
+			}
+			ModelAndView mav = new ModelAndView("results");
+			mav.addObject("list", recipeList);
+			mav.addObject("searchResults", results);
+			return mav;
+
 		} catch (RestClientException e) {
 			redir.addFlashAttribute("message", "No results found!");
 			return new ModelAndView("redirect:/search");
@@ -60,16 +66,16 @@ public class RecipeController {
 //		}
 //		return new ModelAndView("results", "list", favList);
 //	}
-	
-	@RequestMapping("/display")
-	public ModelAndView showSingle(
-			RedirectAttributes redir,
-			@RequestParam(required=false) String uri
-			) {
-		if (uri.isEmpty() || uri == null) {
-			redir.addFlashAttribute("message", "Recipe not found");
-			return new ModelAndView("redirect:/search");
-		}
-		return new ModelAndView("display", "uri", uri);
-	}
+//	
+//	@RequestMapping("/display")
+//	public ModelAndView showSingle(
+//			RedirectAttributes redir,
+//			@RequestParam(required=false) String uri
+//			) {
+//		if (uri.isEmpty() || uri == null) {
+//			redir.addFlashAttribute("message", "Recipe not found");
+//			return new ModelAndView("redirect:/search");
+//		}
+//		return new ModelAndView("display", "uri", uri);
+//	}
 }
