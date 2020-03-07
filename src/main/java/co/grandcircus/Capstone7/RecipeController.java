@@ -1,5 +1,8 @@
 package co.grandcircus.Capstone7;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +12,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import co.grandcircus.Capstone7.Entities.Hit;
+import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
 
 @Controller
@@ -39,19 +43,17 @@ public class RecipeController {
 			@RequestParam(required=false) Integer from, 
 			RedirectAttributes redir) {
 		try {
-//			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
-			System.out.println(lbl);
+			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
 			
-			SearchResult results = apiServ.findByCriteria(lbl, from);
-			
-//			List<Hit> hitList = results.getHits();
-//			List<Recipe> recipeList = new ArrayList<>();
-//			for (Hit hit : hitList) {
-//				recipeList.add(hit.getRecipe());
-//			}
+			List<Hit> hitList = results.getHits();
+			List<Recipe> recipeList = new ArrayList<>();
+			for (Hit hit : hitList) {
+				recipeList.add(hit.getRecipe());
+			}
 			ModelAndView mav = new ModelAndView("results");
-//			mav.addObject("list", recipeList);
-//			mav.addObject("searchResults", results);
+			mav.addObject("list", recipeList);
+			mav.addObject("searchResults", results);
+//			return new ModelAndView("index");
 			return mav;
 
 		} catch (RestClientException e) {
@@ -60,6 +62,7 @@ public class RecipeController {
 			return new ModelAndView("redirect:/search");
 		}
 	}
+	
 //	@RequestMapping("/fav")
 //	public ModelAndView showFavorites(
 //			RedirectAttributes redir

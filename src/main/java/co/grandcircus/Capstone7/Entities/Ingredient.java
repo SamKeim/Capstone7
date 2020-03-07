@@ -1,10 +1,9 @@
 package co.grandcircus.Capstone7.Entities;
 
 public class Ingredient {
+	
 	private String text;
 
-	
-	
 	public String getText() {
 		return text;
 	}
@@ -13,10 +12,4 @@ public class Ingredient {
 		this.text = text;
 	}
 
-	
-	
-	@Override
-	public String toString() {
-		return "Ingredient [text=" + text + "]";
-	}
 }
