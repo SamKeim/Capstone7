@@ -21,6 +21,8 @@ import co.grandcircus.Capstone7.dao.FavoritesDao;
 public class RecipeController {
 	
 	private List<Recipe> currentResults;
+	private String dietLabelsRoot;
+	private String healthLabelsRoot;
 	
 	@Autowired
 	private FavoritesDao fDao;
@@ -49,7 +51,16 @@ public class RecipeController {
 			if(currentResults != null) {
 				currentResults.clear();
 			}
-			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
+			
+			if(dietLbls != null) {
+				dietLabelsRoot = dietLbls;
+			}
+			
+			if(healthLbls != null) {
+				healthLabelsRoot = healthLbls;
+			}
+			
+			SearchResult results = apiServ.findByCriteria(lbl, dietLabelsRoot, healthLabelsRoot, from);
 			currentResults = apiServ.getRecipeList(results);
 			ModelAndView mav = new ModelAndView("results");
 			mav.addObject("list", currentResults);
