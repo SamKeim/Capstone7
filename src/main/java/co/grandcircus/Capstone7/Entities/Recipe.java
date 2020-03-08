@@ -2,10 +2,14 @@ package co.grandcircus.Capstone7.Entities;
 
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Recipe {
-
+	@Id
 	private String uri;
 	private String url;
 	private List<Ingredient> ingredients;
@@ -25,7 +29,8 @@ public class Recipe {
 	@JsonProperty("totalTime")
 	private Double time;
 //	// TODO: see private Boolean isFav;
-
+	// Negated? Use (Id != null) test??
+	
 	public String getUrl() {
 		return url;
 	}

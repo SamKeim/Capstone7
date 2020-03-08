@@ -1,11 +1,15 @@
 package co.grandcircus.Capstone7;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
 
@@ -46,6 +50,17 @@ public class ApiService {
 		System.out.println(url);
 		SearchResult returnResult = rt.getForObject(url, SearchResult.class);
 		return returnResult;
+	}
+	
+	public List<Recipe> getRecipeList(SearchResult results){
+		List<Hit> hitList = results.getHits();
+		
+		List<Recipe> recipeList = new ArrayList<>();
+		for (Hit hit : hitList) {
+			recipeList.add(hit.getRecipe());
+		}
+		
+		return recipeList;
 	}
 
 }
