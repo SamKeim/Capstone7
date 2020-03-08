@@ -1,10 +1,10 @@
 package co.grandcircus.Capstone7;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,16 +12,21 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.Capstone7.Entities.Hit;
+import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
+import co.grandcircus.Capstone7.dao.FavoritesDao;
 
 @Controller
 public class RecipeController {
-
-//	@Autowired
-//	RecipeDao rDao;
-//	
+	
+	private List<Recipe> currentResults;
+	private String dietLabelsRoot;
+	private String healthLabelsRoot;
+	
+	@Autowired
+	private FavoritesDao fDao;
+	
 	@Autowired
 	private ApiService apiServ;
 
@@ -43,17 +48,24 @@ public class RecipeController {
 			@RequestParam(required=false) Integer from, 
 			RedirectAttributes redir) {
 		try {
-			SearchResult results = apiServ.findByCriteria(lbl, dietLbls, healthLbls, from);
-			
-			List<Hit> hitList = results.getHits();
-			List<Recipe> recipeList = new ArrayList<>();
-			for (Hit hit : hitList) {
-				recipeList.add(hit.getRecipe());
+			if(currentResults != null) {
+				currentResults.clear();
 			}
+			
+			if(dietLbls != null) {
+				dietLabelsRoot = dietLbls;
+			}
+			
+			if(healthLbls != null) {
+				healthLabelsRoot = healthLbls;
+			}
+			
+			SearchResult results = apiServ.findByCriteria(lbl, dietLabelsRoot, healthLabelsRoot, from);
+			currentResults = apiServ.getRecipeList(results);
 			ModelAndView mav = new ModelAndView("results");
-			mav.addObject("list", recipeList);
+			mav.addObject("list", currentResults);
 			mav.addObject("searchResults", results);
-//			return new ModelAndView("index");
+
 			return mav;
 
 		} catch (RestClientException e) {
@@ -63,27 +75,45 @@ public class RecipeController {
 		}
 	}
 	
-//	@RequestMapping("/fav")
-//	public ModelAndView showFavorites(
-//			RedirectAttributes redir
-//			) {
-//		List<Recipe> favList = getFavorites();
-//		if(favList.size() == 0) {
-//			redir.addFlashAttribute("message", "No Favorites Found");
-//			return new ModelAndView ("redirect:/search");
-//		}
-//		return new ModelAndView("results", "list", favList);
-//	}
-//	
-//	@RequestMapping("/display")
-//	public ModelAndView showSingle(
-//			RedirectAttributes redir,
-//			@RequestParam(required=false) String uri
-//			) {
-//		if (uri.isEmpty() || uri == null) {
-//			redir.addFlashAttribute("message", "Recipe not found");
-//			return new ModelAndView("redirect:/search");
-//		}
-//		return new ModelAndView("display", "uri", uri);
-//	}
+	@RequestMapping("/fav/add/{uri}")
+	public ModelAndView addFav(
+			RedirectAttributes redir,
+			@PathVariable String uri
+			) {
+		for(Recipe recipe : currentResults) {
+			if (recipe.getUri().equals(uri)) {
+				fDao.save((FavoriteRecipe) recipe);
+				break;
+			} else {
+				redir.addFlashAttribute("message", "Failed to add to favorites, please try again.");
+				return new ModelAndView("redirect:/search");
+			}
+		}
+		redir.addFlashAttribute("message", "Added to Favorites!");
+		return new ModelAndView("redirect:/display?uri=" + uri);
+	}
+	
+	@RequestMapping("/fav")
+	public ModelAndView showFavorites(
+			RedirectAttributes redir
+			) {
+		List<FavoriteRecipe> favList = fDao.findAll();
+		if(favList.size() == 0) {
+			redir.addFlashAttribute("message", "No Favorites Found");
+			return new ModelAndView ("redirect:/search");
+		}
+		return new ModelAndView("results", "list", favList);
+	}
+	
+	@RequestMapping("/display")
+	public ModelAndView showSingle(
+			RedirectAttributes redir,
+			@RequestParam(required=false) String uri
+			) {
+		if (uri.isEmpty() || uri == null) {
+			redir.addFlashAttribute("message", "Recipe not found");
+			return new ModelAndView("redirect:/search");
+		}
+		return new ModelAndView("display", "uri", uri);
+	}
 }
