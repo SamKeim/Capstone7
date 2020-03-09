@@ -21,7 +21,7 @@
    <form action="/fav/add" method="post">
 	<input type="hidden" name="uri" value="${item.uri}">
    </form>
-    <a href="/fav/add/">Add to Favorites</a>
+    <a href="/fav/add/${item.uri}">Add to Favorites</a>
   </div>
 </div>
 
