@@ -12,9 +12,18 @@
 </head>
 <body>
 <%@ include file="partials/header.jsp" %>
-<form method="post" action="/search">
-<input name="lbl" type="text">
-<button type="submit">Search</button>
+<form action="/search" method="post">
+<div>
+<label>Quick Recipe Search</label><input type="text" name="lbl" required>
+</div>
+<div>
+<input name="dietLbls" type="hidden">
+</div>
+<div>
+<input name="healthLbls" type="hidden">
+</div>
+<input type="hidden" name="from" value=0>
+<button>Search!!</button>
 </form>
 </body>
 </html>

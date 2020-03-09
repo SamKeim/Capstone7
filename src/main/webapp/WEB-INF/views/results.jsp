@@ -76,9 +76,6 @@
 		</c:forEach>
 
 	</div>
-
-
-
 	<div>
 		<ul class="pagination pagination-lg">
 			<c:if test="${searchResults.from != 0}">
