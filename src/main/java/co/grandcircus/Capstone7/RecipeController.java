@@ -103,7 +103,7 @@ public class RecipeController {
 
 	@RequestMapping("/display")
 	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("arrayIndex") int arrayIndex) {
-		Recipe test = currentResults.get(arrayIndex);
+		Recipe test = currentResults.get(arrayIndex);		
 		return new ModelAndView("display", "recipe", test);
 	}
 

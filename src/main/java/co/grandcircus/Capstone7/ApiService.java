@@ -47,7 +47,7 @@ public class ApiService {
 			throw new RuntimeException(e);
 		}
 		
-		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		String url = "https://api.edamam.com/search?app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369&r=" + uri;
 		System.out.println(url);
 		
 		Recipe[] result = rt.getForObject(url, Recipe[].class);
