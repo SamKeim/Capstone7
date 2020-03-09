@@ -102,8 +102,8 @@ public class RecipeController {
 //	}
 
 	@RequestMapping("/display")
-	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("arrayIndex") int arrayIndex) {
-		Recipe test = currentResults.get(arrayIndex);		
+	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("recipeUri") String recipeUri) {
+		Recipe test = apiServ.getOneRecipe(recipeUri);
 		return new ModelAndView("display", "recipe", test);
 	}
 

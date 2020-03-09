@@ -64,7 +64,7 @@
 								</p>
 								<p class="card-text">
 									<c:url var="displayUrl" value="/display">
-										<c:param name="arrayIndex" value="${loop.index}" />
+										<c:param name="recipeUri" value="${item.uri}" />
 									</c:url>
 									<a href="${displayUrl}">Recipe</a>
 								<form action="/fav/add" method="post">
