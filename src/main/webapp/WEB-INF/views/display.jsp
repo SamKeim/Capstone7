@@ -20,6 +20,29 @@
 </head>
 <body>
 	<%@ include file="partials/header.jsp"%>
-	${recipe.lbl}
+	<div class="col-sm display-5">
+		<h1>${recipe.lbl}</h1>
+	</div>
+	<div class="col-sm">
+		<img src="${recipe.img}" class="mx-auto">
+		<p class="card-text">
+	</div>
+	<div>
+		<c:if test="${recipe.healthLbl[0] ne null}">
+			<h5>
+				<c:forEach items="${recipe.healthLbl}" var="lbl">
+					<span class="badge badge-secondary">${lbl}</span>
+				</c:forEach>
+			</h5>
+			<c:if test="${recipe.time != 0}">
+							        			  ${recipe.time} min.
+        		 				</c:if>
+		</c:if>
+
+		<div>
+			<a href="${recipe.url }">Recipe</a>
+		</div>
+
+	</div>
 </body>
 </html>
