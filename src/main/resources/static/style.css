@@ -1,16 +1,17 @@
 @charset "ISO-8859-1";
 
-label {
-	font-size:45px;
-	color:white;	
+.label-header {
+	font-size: 45px;
+	color: white;
+	text-shadow: 0 0 3px black, 0 0 5px grey;
 }
 
 button {
-	background:white;
-	color:black;
+	background: white;
+	color: black;
 	border-radius: 12px;
 }
 
-.homepage {
-	padding-bottom:50%;
+.homepage-button {
+	padding-bottom:200px;
 }
