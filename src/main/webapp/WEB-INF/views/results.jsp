@@ -43,16 +43,16 @@
 							<div class="col-sm display-5">
 								<c:if test="${item.dietLbl[0] ne null}">
 									<h5>
-									<c:forEach items="${item.dietLbl}" var="lbl">
-										<span class="badge badge-secondary">${lbl}</span>
-									</c:forEach>
-								    </h5>
-								    </c:if>
+										<c:forEach items="${item.dietLbl}" var="lbl">
+											<span class="badge badge-secondary">${lbl}</span>
+										</c:forEach>
+									</h5>
+								</c:if>
 								<c:if test="${item.healthLbl[0] ne null}">
 									<h5>
-									<c:forEach items="${item.healthLbl}" var="lbl">
-										<span class="badge badge-secondary">${lbl}</span>
-									</c:forEach>
+										<c:forEach items="${item.healthLbl}" var="lbl">
+											<span class="badge badge-secondary">${lbl}</span>
+										</c:forEach>
 									</h5>
 								</c:if>
 								<p class="card-text">
