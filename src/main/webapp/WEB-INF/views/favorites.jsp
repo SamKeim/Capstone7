@@ -27,6 +27,10 @@
   <div class="card-body">
     <img src="${item.img}"></image>
     <a href="${item.url}">Recipe</a>
+    <form action="/fav/delete">
+    <input type="hidden" name="id" value="${item.id}">
+    <button>Remove from Fav</button>
+    </form>
   </div>
 </div>
 </c:forEach>
