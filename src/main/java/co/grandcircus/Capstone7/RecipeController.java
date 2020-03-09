@@ -2,6 +2,8 @@ package co.grandcircus.Capstone7;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,6 @@ public class RecipeController {
 	private List<Recipe> currentResults;
 	private String dietLabelsRoot;
 	private String healthLabelsRoot;
-
 	@Autowired
 	private FavoritesDao fDao;
 
@@ -40,11 +41,8 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-	public ModelAndView showResults(
-			@RequestParam String lbl, 
-			@RequestParam(required = false) String dietLbls,
-			@RequestParam(required = false) String healthLbls, 
-			@RequestParam(required = false) Integer from,
+	public ModelAndView showResults(@RequestParam String lbl, @RequestParam(required = false) String dietLbls,
+			@RequestParam(required = false) String healthLbls, @RequestParam(required = false) Integer from,
 			RedirectAttributes redir) {
 		try {
 			if (currentResults != null) {
@@ -75,31 +73,23 @@ public class RecipeController {
 	}
 
 	@PostMapping("/fav/add")
-	public ModelAndView addFav(RedirectAttributes redir, @RequestParam String uri) {
-		for (Recipe recipe : currentResults) {
-			if (recipe.getUri().equals(uri)) {
-				FavoriteRecipe fav = new FavoriteRecipe();
-				fav.setUri(recipe.getUri());
-				fDao.save(fav);
-				break;
-			} else {
-				redir.addFlashAttribute("message", "Failed to add to favorites, please try again.");
-				return new ModelAndView("redirect:/search");
-			}
-		}
+	public ModelAndView addFav(RedirectAttributes redir, @RequestParam int arrayIndex) {
+		Recipe rec = currentResults.get(arrayIndex);
+		FavoriteRecipe fav = apiServ.convert(rec);
+		fDao.save(fav);
 		redir.addFlashAttribute("message", "Added to Favorites!");
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/search");
 	}
 
-//	@RequestMapping("/fav")
-//	public ModelAndView showFavorites(RedirectAttributes redir) {
-//		List<Recipe> favList = rDao.findAll();
-//		if (favList.size() == 0) {
-//			redir.addFlashAttribute("message", "No Favorites Found");
-//			return new ModelAndView("redirect:/search");
-//		}
-//		return new ModelAndView("results", "list", favList);
-//	}
+	@RequestMapping("/fav")
+	public ModelAndView showFavorites(RedirectAttributes redir) {
+		List<FavoriteRecipe> favList = fDao.findAll();
+		if (favList.size() == 0) {
+			redir.addFlashAttribute("message", "No Favorites Found");
+			return new ModelAndView("redirect:/search");
+		}
+		return new ModelAndView("favorites", "list", favList);
+	}
 
 	@RequestMapping("/display")
 	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("arrayIndex") int arrayIndex) {
@@ -107,14 +97,14 @@ public class RecipeController {
 		return new ModelAndView("display", "recipe", test);
 	}
 
-	//@PostMapping("/display")
-	//public ModelAndView redirectRecipe(String url) {
-	//	return new ModelAndView("redirect:" + url);
+//	@PostMapping("/display")
+//	public ModelAndView redirectRecipe(String url) {
+//		return new ModelAndView("redirect:" + url);
 //	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam(required = false) String uri) {
 //		if (uri.isEmpty() || uri == null) {
 //			redir.addFlashAttribute("message", "Recipe not found");
 //			return new ModelAndView("redirect:/search");
 //		}
 //		return new ModelAndView("display", "uri", uri);
-	//}
+//	}
 }
