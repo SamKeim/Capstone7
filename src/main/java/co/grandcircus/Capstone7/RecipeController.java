@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
-import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
 import co.grandcircus.Capstone7.dao.FavoritesDao;
@@ -59,7 +58,7 @@ public class RecipeController {
 			}
 
 			SearchResult results = apiServ.findByCriteria(lbl, dietLabelsRoot, healthLabelsRoot, from);
-			List<Hit> currentResults = results.getHits();
+			currentResults = apiServ.getRecipeList(results);
 			ModelAndView mav = new ModelAndView("results");
 			mav.addObject("list", currentResults);
 			mav.addObject("searchResults", results);
