@@ -16,7 +16,7 @@
 	crossorigin="anonymous">
 <link href="/style.css" rel="stylesheet" />
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>${recipe.lbl}</title>
 </head>
 <body>
 	<%@ include file="partials/header.jsp"%>
@@ -35,8 +35,8 @@
 				</c:forEach>
 			</h5>
 			<c:if test="${recipe.time != 0}">
-							        			  ${recipe.time} min.
-        		 				</c:if>
+				 ${recipe.time} min.
+        	</c:if>
 		</c:if>
 
 		<div>
