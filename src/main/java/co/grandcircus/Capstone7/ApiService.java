@@ -1,6 +1,7 @@
 package co.grandcircus.Capstone7;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -50,23 +52,25 @@ public class ApiService {
 	}
 	
 	public Recipe getOneRecipe(String uri) {
-		try {
-			System.out.println("Test in try loop");
-			uri = URLEncoder.encode(uri, "UTF-8");
-			System.out.println("Encoded");
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("test in exception");
-			throw new RuntimeException(e);
-		}
+//		try {
+//			System.out.println("Test in try loop");
+//			uri = URLEncoder.encode(uri, "UTF-8");
+//			System.out.println("Encoded");
+//		} catch (UnsupportedEncodingException e) {
+//			System.out.println("test in exception");
+//			throw new RuntimeException(e);
+//		}
+//		String uri = "http://www.edamam.com/ontologies/edamam.owl#recipe_b79327d05b8e5b838ad6cfd9576b30b6";
 		
-		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
-		System.out.println(url);
+		String baseUrl = "https://api.edamam.com/search?app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		URI url = UriComponentsBuilder.fromHttpUrl(baseUrl).queryParam("r", uri).build().toUri();
+		System.out.println(url.toString());
 		
 		Recipe[] result = rt.getForObject(url, Recipe[].class);
 		System.out.println("success");
-		
-		return null;
-//		return result[0];
+		System.out.println(result[0]);
+//		return null;
+		return result[0];
 	}
 
 

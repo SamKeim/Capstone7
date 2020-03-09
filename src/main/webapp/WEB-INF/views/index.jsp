@@ -19,9 +19,9 @@
 <meta charset="ISO-8859-1">
 <title>Recipes 'R' Us</title>
 </head>
-<body>
-	<div class="new"
-		style="background-image: url('https://image.shutterstock.com/image-photo/healthy-food-clean-eating-selection-260nw-722718097.jpg');">
+<body class = "new">
+	<div
+		style="background-image: url('');">
 		<%@ include file="partials/header.jsp"%>
 		<form action="/search" method="post" class="label-header">
 			<div>

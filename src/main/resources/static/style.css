@@ -17,7 +17,5 @@ button {
 }
 
 .new {
-	background-repeat: stretch;
-  	height: 100%;
-  	width: 100%;
+	background: url('https://image.shutterstock.com/image-photo/healthy-food-clean-eating-selection-260nw-722718097.jpg') left top repeat-x, url('https://www.myfreetextures.com/wp-content/uploads/2011/06/floora2-900x900.jpg') left top repeat;
 }
