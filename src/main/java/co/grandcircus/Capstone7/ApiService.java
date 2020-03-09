@@ -2,7 +2,6 @@ package co.grandcircus.Capstone7;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class ApiService {
 			request.getHeaders().add(HttpHeaders.USER_AGENT, "ooeeee!");
 			return execution.execute(request, body);
 		};
-		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
+		rt = new RestTemplateBuilder().additionalInterceptors(interceptor, new RequestResponseLoggingInterceptor()).build();
 	}
 
 	public Recipe displayRecipeSite(String uri) {
@@ -38,16 +37,24 @@ public class ApiService {
 		return recipe;
 	}
 	
-	public List<Recipe> getOneRecipe(String uri) {
+	public Recipe getOneRecipe(String uri) {
 		try {
+			System.out.println("Test in try loop");
 			uri = URLEncoder.encode(uri, "UTF-8");
+			System.out.println("Encoded");
 		} catch (UnsupportedEncodingException e) {
+			System.out.println("test in exception");
 			throw new RuntimeException(e);
 		}
+		
 		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
-		SearchResult result = rt.getForObject(url, SearchResult.class);
-		List<Recipe> recipe = getRecipeList(result);
-		return recipe;
+		System.out.println(url);
+		
+		Recipe[] result = rt.getForObject(url, Recipe[].class);
+		System.out.println("success");
+		
+		return null;
+//		return result[0];
 	}
 
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,11 +74,13 @@ public class RecipeController {
 		}
 	}
 
-	@RequestMapping("/fav/add/{uri}")
-	public ModelAndView addFav(RedirectAttributes redir, @PathVariable String uri) {
+	@PostMapping("/fav/add")
+	public ModelAndView addFav(RedirectAttributes redir, @RequestParam String uri) {
 		for (Recipe recipe : currentResults) {
 			if (recipe.getUri().equals(uri)) {
-				fDao.save((FavoriteRecipe) recipe);
+				FavoriteRecipe fav = new FavoriteRecipe();
+				fav.setUri(recipe.getUri());
+				fDao.save(fav);
 				break;
 			} else {
 				redir.addFlashAttribute("message", "Failed to add to favorites, please try again.");
@@ -87,23 +88,23 @@ public class RecipeController {
 			}
 		}
 		redir.addFlashAttribute("message", "Added to Favorites!");
-		return new ModelAndView("redirect:/index");
+		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping("/fav")
-	public ModelAndView showFavorites(RedirectAttributes redir) {
-		List<FavoriteRecipe> favList = fDao.findAll();
-		if (favList.size() == 0) {
-			redir.addFlashAttribute("message", "No Favorites Found");
-			return new ModelAndView("redirect:/search");
-		}
-		return new ModelAndView("results", "list", favList);
-	}
+//	@RequestMapping("/fav")
+//	public ModelAndView showFavorites(RedirectAttributes redir) {
+//		List<Recipe> favList = rDao.findAll();
+//		if (favList.size() == 0) {
+//			redir.addFlashAttribute("message", "No Favorites Found");
+//			return new ModelAndView("redirect:/search");
+//		}
+//		return new ModelAndView("results", "list", favList);
+//	}
 
 	@RequestMapping("/display")
-	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("r") String uri) {
-		List<Recipe> recipe = apiServ.getOneRecipe(uri);
-		return new ModelAndView("display", "recipe", recipe);
+	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("arrayIndex") int arrayIndex) {
+		Recipe test = currentResults.get(arrayIndex);
+		return new ModelAndView("display", "recipe", test);
 	}
 
 	//@PostMapping("/display")

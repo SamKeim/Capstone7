@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Recipe {
-	@Id
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
 	private String uri;
 	private String url;
 	private List<Ingredient> ingredients;
@@ -30,7 +33,9 @@ public class Recipe {
 	private Double time;
 // TODO: see private Boolean isFav;
 	// Negated? Use (Id != null) test??
-
+	
+	
+	
 	public String getUri() {
 		return uri;
 	}

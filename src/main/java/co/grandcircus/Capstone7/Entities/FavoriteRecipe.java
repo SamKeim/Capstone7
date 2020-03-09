@@ -3,24 +3,29 @@ package co.grandcircus.Capstone7.Entities;
 import javax.persistence.*;
 
 @Entity
-public class FavoriteRecipe extends Recipe{
+public class FavoriteRecipe{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String url;
+	private String uri;
 	
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUrl() {
-		return url;
+
+	public String getUri() {
+		return uri;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
+
 	
+
 }

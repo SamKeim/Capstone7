@@ -20,12 +20,6 @@
 </head>
 <body>
 	<%@ include file="partials/header.jsp"%>
-	<div class="card border-info mb-3" style="max-width: 20rem;">
-		<div class="card-header">${recipe.lbl}</div>
-		<div class="card-body">
-			<img src="${recipe.img}">
-			<p class="card-text">${recipe.dietLbl}and${recipe.healthLbl}</p>
-		</div>
-	</div>
+	${recipe.lbl}
 </body>
 </html>
