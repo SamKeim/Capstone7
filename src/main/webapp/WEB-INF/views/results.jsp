@@ -26,10 +26,11 @@
 		</h4>
 	</div>
 	<div class="container-fluid justify-content-center">
-		<c:forEach items="${list}" var="item">
+		<c:forEach items="${list}" var="item" varStatus="loop">
 			<div class="card border-info mb-3">
 				<div class="card-header">
-					<h2>${item.lbl}
+					<h2>
+						${item.lbl}
 						<small class="text-muted">from ${item.src}</small>
 					</h2>
 				</div>
@@ -63,7 +64,7 @@
 								</p>
 								<p class="card-text">
 									<c:url var="displayUrl" value="/display">
-										<c:param name="uri" value="${item.uri}" />
+										<c:param name="arrayIndex" value="${loop.index}" />
 									</c:url>
 									<a href="${displayUrl}">Recipe</a>
 								<form action="/fav/add" method="post">

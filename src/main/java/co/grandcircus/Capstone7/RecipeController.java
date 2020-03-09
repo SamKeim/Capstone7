@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
-import co.grandcircus.Capstone7.dao.RecipeDao;
+import co.grandcircus.Capstone7.dao.FavoritesDao;
 
 @Controller
 public class RecipeController {
@@ -22,7 +24,7 @@ public class RecipeController {
 	private String healthLabelsRoot;
 
 	@Autowired
-	private RecipeDao rDao;
+	private FavoritesDao fDao;
 
 	@Autowired
 	private ApiService apiServ;
@@ -76,32 +78,33 @@ public class RecipeController {
 	public ModelAndView addFav(RedirectAttributes redir, @RequestParam String uri) {
 		for (Recipe recipe : currentResults) {
 			if (recipe.getUri().equals(uri)) {
-				rDao.save(recipe);
-				redir.addFlashAttribute("message","success");
+				FavoriteRecipe fav = new FavoriteRecipe();
+				fav.setUri(recipe.getUri());
+				fDao.save(fav);
 				break;
 			} else {
 				redir.addFlashAttribute("message", "Failed to add to favorites, please try again.");
 				return new ModelAndView("redirect:/search");
 			}
 		}
-//		redir.addFlashAttribute("message", "Added to Favorites!");
+		redir.addFlashAttribute("message", "Added to Favorites!");
 		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping("/fav")
-	public ModelAndView showFavorites(RedirectAttributes redir) {
-		List<Recipe> favList = rDao.findAll();
-		if (favList.size() == 0) {
-			redir.addFlashAttribute("message", "No Favorites Found");
-			return new ModelAndView("redirect:/search");
-		}
-		return new ModelAndView("results", "list", favList);
-	}
+//	@RequestMapping("/fav")
+//	public ModelAndView showFavorites(RedirectAttributes redir) {
+//		List<Recipe> favList = rDao.findAll();
+//		if (favList.size() == 0) {
+//			redir.addFlashAttribute("message", "No Favorites Found");
+//			return new ModelAndView("redirect:/search");
+//		}
+//		return new ModelAndView("results", "list", favList);
+//	}
 
 	@RequestMapping("/display")
-	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("uri") String uri) {
-		Recipe recipe = apiServ.getOneRecipe(uri);
-		return new ModelAndView("display", "recipes", recipe);
+	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("arrayIndex") int arrayIndex) {
+		Recipe test = currentResults.get(arrayIndex);
+		return new ModelAndView("display", "recipe", test);
 	}
 
 	//@PostMapping("/display")

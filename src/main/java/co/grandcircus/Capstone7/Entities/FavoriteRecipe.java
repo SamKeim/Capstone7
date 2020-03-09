@@ -8,7 +8,7 @@ public class FavoriteRecipe{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-//	Recipe recipe;
+	private String uri;
 	
 	public Long getId() {
 		return id;
@@ -18,14 +18,14 @@ public class FavoriteRecipe{
 		this.id = id;
 	}
 
-//	public Recipe getRecipe() {
-//		return recipe;
-//	}
-//
-//	public void setRecipe(Recipe recipe) {
-//		this.recipe = recipe;
-//	}
-	
+	public String getUri() {
+		return uri;
+	}
+
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
+
 	
 
 }

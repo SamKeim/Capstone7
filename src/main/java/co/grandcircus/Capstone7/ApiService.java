@@ -2,7 +2,6 @@ package co.grandcircus.Capstone7;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
-import co.grandcircus.Capstone7.Entities.Simple;
 
 @Component
 public class ApiService {
@@ -41,16 +39,19 @@ public class ApiService {
 	
 	public Recipe getOneRecipe(String uri) {
 		try {
+			System.out.println("Test in try loop");
 			uri = URLEncoder.encode(uri, "UTF-8");
+			System.out.println("Encoded");
 		} catch (UnsupportedEncodingException e) {
+			System.out.println("test in exception");
 			throw new RuntimeException(e);
 		}
+		
 		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 		System.out.println(url);
 		
-		Simple[] result = rt.getForObject(url, Simple[].class);
-		System.out.println(result[0].getLabel());
-		
+		Recipe[] result = rt.getForObject(url, Recipe[].class);
+		System.out.println("success");
 		
 		return null;
 //		return result[0];
