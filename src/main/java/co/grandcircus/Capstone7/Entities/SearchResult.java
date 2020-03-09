@@ -10,18 +10,7 @@ public class SearchResult {
 	private Boolean more;
 	private Integer to;
 	private Integer from;
-////	private String healthLbls;
-//	
-//	
-//	
-//	public String getHealthLbls() {
-//		return healthLbls;
-//	}
-//
-//	public void setHealthLbls(String healthLbls) {
-//		this.healthLbls = healthLbls;
-//	}
-
+	
 	public String getQ() {
 		return q;
 	}
