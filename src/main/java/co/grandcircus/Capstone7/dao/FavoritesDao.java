@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
 
-public interface FavoritesDao extends JpaRepository<FavoriteRecipe, String> {
+public interface FavoritesDao extends JpaRepository<FavoriteRecipe, Long> {
 //	public Recipe findByUri(String uri);
 }

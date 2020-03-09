@@ -11,6 +11,7 @@ public class FavoriteRecipe{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	private String uri;
 	private String url;
 	@JsonProperty("label")
 	private String lbl;
@@ -18,6 +19,13 @@ public class FavoriteRecipe{
 	private String img;
 	@JsonProperty("source")
 	private String src;
+	
+	public String getUri() {
+		return uri;
+	}
+	public void setUri(String uri) {
+		this.uri = uri;
+	}
 	public Long getId() {
 		return id;
 	}

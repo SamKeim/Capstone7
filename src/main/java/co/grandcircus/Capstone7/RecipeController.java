@@ -39,7 +39,14 @@ public class RecipeController {
 	public ModelAndView showSearch() {
 		return new ModelAndView("search");
 	}
-
+	
+	@RequestMapping("/fav/delete")
+	public ModelAndView remove(@RequestParam("id") Long id) {
+		FavoriteRecipe fav = fDao.findById(id).orElse(null);
+		fDao.delete(fav);
+		return new ModelAndView("redirect:/fav");
+	}
+	
 	@PostMapping("/search")
 	public ModelAndView showResults(@RequestParam String lbl, @RequestParam(required = false) String dietLbls,
 			@RequestParam(required = false) String healthLbls, @RequestParam(required = false) Integer from,

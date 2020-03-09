@@ -48,6 +48,7 @@ public class ApiService {
 		returnRec.setLbl(orig.getLbl());
 		returnRec.setImg(orig.getImg());
 		returnRec.setSrc(orig.getSrc());
+		returnRec.setUri(orig.getUri());
 		return returnRec;
 	}
 	
