@@ -15,6 +15,9 @@
 <title>Recipes || Results</title>
 </head>
 <body>
+	<div class="container-fluid">Displaying results
+		${searchResults.from} to ${searchResults.from + 10} of
+		${searchResults.count}</div>
 	<div class="contianer-fluid"><%@ include
 			file="partials/header.jsp"%>
 	</div>
