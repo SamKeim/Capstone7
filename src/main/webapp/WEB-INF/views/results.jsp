@@ -68,7 +68,7 @@
 									</c:url>
 									<a href="${displayUrl}">Recipe</a>
 								<form action="/fav/add" method="post">
-									<input type="hidden" name="uri" value="${item.uri}">
+									<input type="hidden" name="arrayIndex" value="${loop.index}">
 									<button type="submit" class="btn-success">Add to Favorites</button>
 								</form>
 							</div>

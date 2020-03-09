@@ -11,6 +11,9 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
 import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
@@ -35,6 +38,15 @@ public class ApiService {
 
 		Recipe recipe = rt.getForObject(url, Recipe.class);
 		return recipe;
+	}
+	
+	public FavoriteRecipe convert(Recipe orig) {
+		FavoriteRecipe returnRec = new FavoriteRecipe();
+		returnRec.setUrl(orig.getUrl());
+		returnRec.setLbl(orig.getLbl());
+		returnRec.setImg(orig.getImg());
+		returnRec.setSrc(orig.getSrc());
+		return returnRec;
 	}
 	
 	public Recipe getOneRecipe(String uri) {
