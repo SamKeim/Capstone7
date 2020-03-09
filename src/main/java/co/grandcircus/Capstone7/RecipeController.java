@@ -4,18 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
-import co.grandcircus.Capstone7.dao.FavoritesDao;
+import co.grandcircus.Capstone7.dao.RecipeDao;
 
 @Controller
 public class RecipeController {
@@ -25,7 +22,7 @@ public class RecipeController {
 	private String healthLabelsRoot;
 
 	@Autowired
-	private FavoritesDao fDao;
+	private RecipeDao rDao;
 
 	@Autowired
 	private ApiService apiServ;
@@ -75,24 +72,25 @@ public class RecipeController {
 		}
 	}
 
-	@RequestMapping("/fav/add/{uri}")
-	public ModelAndView addFav(RedirectAttributes redir, @PathVariable String uri) {
+	@PostMapping("/fav/add")
+	public ModelAndView addFav(RedirectAttributes redir, @RequestParam String uri) {
 		for (Recipe recipe : currentResults) {
 			if (recipe.getUri().equals(uri)) {
-				fDao.save((FavoriteRecipe) recipe);
+				rDao.save(recipe);
+				redir.addFlashAttribute("message","success");
 				break;
 			} else {
 				redir.addFlashAttribute("message", "Failed to add to favorites, please try again.");
 				return new ModelAndView("redirect:/search");
 			}
 		}
-		redir.addFlashAttribute("message", "Added to Favorites!");
-		return new ModelAndView("redirect:/index");
+//		redir.addFlashAttribute("message", "Added to Favorites!");
+		return new ModelAndView("redirect:/");
 	}
 
 	@RequestMapping("/fav")
 	public ModelAndView showFavorites(RedirectAttributes redir) {
-		List<FavoriteRecipe> favList = fDao.findAll();
+		List<Recipe> favList = rDao.findAll();
 		if (favList.size() == 0) {
 			redir.addFlashAttribute("message", "No Favorites Found");
 			return new ModelAndView("redirect:/search");

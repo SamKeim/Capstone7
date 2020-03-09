@@ -15,9 +15,6 @@
 <title>Recipes || Results</title>
 </head>
 <body>
-	<div class="container-fluid">Displaying results
-		${searchResults.from} to ${searchResults.from + 10} of
-		${searchResults.count}</div>
 	<div class="contianer-fluid"><%@ include
 			file="partials/header.jsp"%>
 	</div>
@@ -60,17 +57,16 @@
 								</c:if>
 								<p class="card-text">
 									<i><fmt:formatNumber type="number" maxIntegerDigits="1"
-											value="${item.calories}" /> kCal <c:if
-											test="${item.time != 0}">
-        			 / ${item.time}min.
-        		 </c:if> </i>
+											value="${item.calories}" /> kCal <c:if test="${item.time != 0}">
+							        			 / ${item.time} min.
+        		 				</c:if> </i>
 								</p>
 								<p class="card-text">
 									<a href="/display?uri=${item.uri}">Recipe</a>
 								<form action="/fav/add" method="post">
 									<input type="hidden" name="uri" value="${item.uri}">
+									<button type="submit" class="btn-success">Add to Favorites</button>
 								</form>
-								<a href="/fav/add/${item.uri}">Add to Favorites</a>
 							</div>
 						</div>
 					</div>

@@ -2,14 +2,18 @@ package co.grandcircus.Capstone7.Entities;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@Entity
 public class Recipe {
-	@Id
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
 	private String uri;
 	private String url;
 	private List<Ingredient> ingredients;
@@ -30,7 +34,9 @@ public class Recipe {
 	private Double time;
 // TODO: see private Boolean isFav;
 	// Negated? Use (Id != null) test??
-
+	
+	
+	
 	public String getUri() {
 		return uri;
 	}
