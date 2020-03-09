@@ -18,6 +18,7 @@
     <img src="${item.img}">
     <p class="card-text">${item.dietLbl} and ${item.healthLbl}</p>
     <a href="/display?uri=${item.uri}">Recipe</a>
+    <a href="/fav/add/${item.uri}">Add to Favorites</a>
   </div>
 </div>
 
