@@ -99,21 +99,19 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/display")
-	public ModelAndView showSingle(
-			RedirectAttributes redir,
-			@RequestParam("r") String uri) {
-		
-		Recipe recipe = apiServ.getOneRecipe(uri);
+	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("r") String uri) {
+		List<Recipe> recipe = apiServ.getOneRecipe(uri);
 		return new ModelAndView("display", "recipe", recipe);
 	}
-	@PostMapping("/display")
-	public ModelAndView redirectRecipe(String url) {
-		return new ModelAndView("redirect:" + url);
+
+	//@PostMapping("/display")
+	//public ModelAndView redirectRecipe(String url) {
+	//	return new ModelAndView("redirect:" + url);
 //	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam(required = false) String uri) {
 //		if (uri.isEmpty() || uri == null) {
 //			redir.addFlashAttribute("message", "Recipe not found");
 //			return new ModelAndView("redirect:/search");
 //		}
 //		return new ModelAndView("display", "uri", uri);
-	}
+	//}
 }

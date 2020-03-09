@@ -3,11 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
 <head>
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -25,7 +20,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 	<div class="container-fluid">Displaying results
 		${searchResults.from} to ${searchResults.from + 10} of
 		${searchResults.count}</div>
@@ -36,26 +30,9 @@
 			<div class="card-body">
 				<img src="${item.recipe.img}">
 				<p class="card-text">${item.recipe.dietLbl}and ${item.recipe.healthLbl}</p>
-				<a href="/display?r=${item.recipe.uri}&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369">Recipe</a>
+				<form action="/display"><input type="hidden" name="r" value="${item.recipe.uri}"><button type="submit">View Recipe</button></form>
 			</div>
 		</div>
-=======
-<div class="container-fluid">Displaying results ${searchResults.from} to ${searchResults.from + 10} of ${searchResults.count}</div>
-<c:forEach items="${list}" var="item">
-<div class="card border-info mb-3" style="max-width: 20rem;">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <img src="${item.img}">
-    <p class="card-text">${item.dietLbl} and ${item.healthLbl}</p>
-    <a href="/display?uri=${item.uri}">Recipe</a>
-   <form action="/fav/add" method="post">
-	<input type="hidden" name="uri" value="${item.uri}">
-   </form>
-    <a href="/fav/add/${item.uri}">Add to Favorites</a>
-  </div>
-</div>
->>>>>>> 11f2ef428bd9b9f347fbe863b1109fe65b1737e1
-
 	</c:forEach>
 	<div>
 		<ul class="pagination pagination-lg">
