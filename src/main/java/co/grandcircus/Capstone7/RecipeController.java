@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,8 +70,8 @@ public class RecipeController {
 		}
 	}
 
-	@RequestMapping("/fav/add/{uri}")
-	public ModelAndView addFav(RedirectAttributes redir, @PathVariable String uri) {
+	@PostMapping("/fav/add/")
+	public ModelAndView addFav(RedirectAttributes redir, @RequestParam("uri") String uri) {
 		for (Recipe recipe : currentResults) {
 			if (recipe.getUri().equals(uri)) {
 				fDao.save((FavoriteRecipe) recipe);
@@ -83,7 +82,7 @@ public class RecipeController {
 			}
 		}
 		redir.addFlashAttribute("message", "Added to Favorites!");
-		return new ModelAndView("redirect:/results");
+		return new ModelAndView("redirect:/index");
 	}
 
 	@RequestMapping("/fav")
