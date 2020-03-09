@@ -9,10 +9,7 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Recipe {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
+
 	private String uri;
 	private String url;
 	private List<Ingredient> ingredients;

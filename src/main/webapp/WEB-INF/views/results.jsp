@@ -6,6 +6,11 @@
 <html>
 <head>
 <link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<link
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-2kOE+STGAkgemIkUbGtoZ8dJLqfvJ/xzRnimSkQN7viOfwRvWseF7lqcuNXmjwrL"
@@ -68,7 +73,7 @@
 									</c:url>
 									<a href="${displayUrl}">Recipe</a>
 								<form action="/fav/add" method="post">
-									<input type="hidden" name="uri" value="${item.uri}">
+									<input type="hidden" name="arrayIndex" value="${loop.index}">
 									<button type="submit" class="btn-success">Add to Favorites</button>
 								</form>
 							</div>

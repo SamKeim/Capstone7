@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -15,34 +14,21 @@
 	integrity="sha384-2kOE+STGAkgemIkUbGtoZ8dJLqfvJ/xzRnimSkQN7viOfwRvWseF7lqcuNXmjwrL"
 	crossorigin="anonymous">
 <link href="/style.css" rel="stylesheet" />
+<head><%@ include
+			file="partials/header.jsp"%>
+
 <meta charset="ISO-8859-1">
-<title>${recipe.lbl}</title>
+<title>Favorites</title>
 </head>
 <body>
-	<%@ include file="partials/header.jsp"%>
-	<div class="col-sm display-5">
-		<h1>${recipe.lbl}</h1>
-	</div>
-	<div class="col-sm">
-		<img src="${recipe.img}" class="mx-auto">
-		<p class="card-text">
-	</div>
-	<div>
-		<c:if test="${recipe.healthLbl[0] ne null}">
-			<h5>
-				<c:forEach items="${recipe.healthLbl}" var="lbl">
-					<span class="badge badge-secondary">${lbl}</span>
-				</c:forEach>
-			</h5>
-			<c:if test="${recipe.time != 0}">
-				 ${recipe.time} min.
-        	</c:if>
-		</c:if>
-
-		<div>
-			<a href="${recipe.url }">Recipe</a>
-		</div>
-
-	</div>
+<c:forEach items="${list}" var="item">
+<div class="card border-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">${item.lbl}</div>
+  <div class="card-body">
+    <img src="${item.img}"></image>
+    <a href="${item.url}">Recipe</a>
+  </div>
+</div>
+</c:forEach>
 </body>
 </html>
