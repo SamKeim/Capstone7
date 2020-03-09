@@ -18,12 +18,13 @@
   <strong>${message}</strong>
 </div>
 </c:if>
+<div class="container-fluid text-center">
 <form action="/search" method="post">
 <div>
-<label>Recipe Name</label><input type="text" name="lbl" required>
+<label><h4>Recipe Name</h4></label><input type="text" name="lbl" required>
 </div>
 <div>
-<label>Diet</label>
+<label><h4>Diet</h4></label>
 <select name="dietLbls">
 	<option value="">None</option>
 	<option value="low-carb">Low Carb</option>
@@ -32,7 +33,7 @@
 </select>
 </div>
 <div>
-<label>Allergies</label>
+<label><h4>Allergies</h4></label>
 <select name="healthLbls">
 	<option value="">None</option>
 	<option value="alcohol-free">Alcohol Free</option>
@@ -43,5 +44,6 @@
 <input type="hidden" name="from" value=0>
 <button>Search!!</button>
 </form>
+</div>
 </body>
 </html>
