@@ -1,1 +1,16 @@
 @charset "ISO-8859-1";
+
+label {
+	font-size:45px;
+	color:white;	
+}
+
+button {
+	background:white;
+	color:black;
+	border-radius: 12px;
+}
+
+.homepage {
+	padding-bottom:50%;
+}
