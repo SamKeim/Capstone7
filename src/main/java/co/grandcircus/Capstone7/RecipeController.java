@@ -42,8 +42,11 @@ public class RecipeController {
 	}
 
 	@PostMapping("/search")
-	public ModelAndView showResults(@RequestParam String lbl, @RequestParam(required = false) String dietLbls,
-			@RequestParam(required = false) String healthLbls, @RequestParam(required = false) Integer from,
+	public ModelAndView showResults(
+			@RequestParam String lbl, 
+			@RequestParam(required = false) String dietLbls,
+			@RequestParam(required = false) String healthLbls, 
+			@RequestParam(required = false) Integer from,
 			RedirectAttributes redir) {
 		try {
 			if (currentResults != null) {

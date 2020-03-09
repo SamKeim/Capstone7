@@ -14,7 +14,7 @@
 <%@ include file="partials/header.jsp" %>
 <form action="/search" method="post">
 <div>
-<label>Recipe Name</label><input type="text" name="lbl" required>
+<label>Quick Recipe Search</label><input type="text" name="lbl" required>
 </div>
 <div>
 <input name="dietLbls" type="hidden">
