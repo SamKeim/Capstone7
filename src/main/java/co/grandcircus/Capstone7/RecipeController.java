@@ -101,9 +101,9 @@ public class RecipeController {
 	}
 
 	@RequestMapping("/display")
-	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("r") String uri) {
-		List<Recipe> recipe = apiServ.getOneRecipe(uri);
-		return new ModelAndView("display", "recipe", recipe);
+	public ModelAndView showSingle(RedirectAttributes redir, @RequestParam("uri") String uri) {
+		Recipe recipe = apiServ.getOneRecipe(uri);
+		return new ModelAndView("display", "recipes", recipe);
 	}
 
 	//@PostMapping("/display")

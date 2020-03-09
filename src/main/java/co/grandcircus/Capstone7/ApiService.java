@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
+import co.grandcircus.Capstone7.Entities.Simple;
 
 @Component
 public class ApiService {
@@ -28,7 +29,7 @@ public class ApiService {
 			request.getHeaders().add(HttpHeaders.USER_AGENT, "ooeeee!");
 			return execution.execute(request, body);
 		};
-		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
+		rt = new RestTemplateBuilder().additionalInterceptors(interceptor, new RequestResponseLoggingInterceptor()).build();
 	}
 
 	public Recipe displayRecipeSite(String uri) {
@@ -38,16 +39,21 @@ public class ApiService {
 		return recipe;
 	}
 	
-	public List<Recipe> getOneRecipe(String uri) {
+	public Recipe getOneRecipe(String uri) {
 		try {
 			uri = URLEncoder.encode(uri, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
 		}
 		String url = "https://api.edamam.com/search?r=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
-		SearchResult result = rt.getForObject(url, SearchResult.class);
-		List<Recipe> recipe = getRecipeList(result);
-		return recipe;
+		System.out.println(url);
+		
+		Simple[] result = rt.getForObject(url, Simple[].class);
+		System.out.println(result[0].getLabel());
+		
+		
+		return null;
+//		return result[0];
 	}
 
 
