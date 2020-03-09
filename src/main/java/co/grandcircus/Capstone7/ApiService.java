@@ -31,8 +31,15 @@ public class ApiService {
 	public Recipe displayRecipe(String uri) {
 		String url = "https://api.edamam.com/search?q=" + uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
 
-		Recipe[] tempList = rt.getForObject(url, Recipe[].class);
-		return tempList[0];
+		Recipe recipe = rt.getForObject(url, Recipe.class);
+		return recipe;
+	}
+	
+	public Recipe getOneRecipe(String uri) {
+		uri = uri.substring(0, uri.indexOf("#"));
+		String url = uri + "&app_id=1aba9e71&app_key=d55c2a63a55637683ce6dc1e71f0a369";
+		Recipe recipe = rt.getForObject(url, Recipe.class);
+		return recipe;
 	}
 
 

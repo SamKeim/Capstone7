@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.Capstone7.Entities.FavoriteRecipe;
+import co.grandcircus.Capstone7.Entities.Hit;
 import co.grandcircus.Capstone7.Entities.Recipe;
 import co.grandcircus.Capstone7.Entities.SearchResult;
 import co.grandcircus.Capstone7.dao.FavoritesDao;
@@ -61,7 +62,7 @@ public class RecipeController {
 			}
 			
 			SearchResult results = apiServ.findByCriteria(lbl, dietLabelsRoot, healthLabelsRoot, from);
-			currentResults = apiServ.getRecipeList(results);
+			List<Hit> currentResults = results.getHits();
 			ModelAndView mav = new ModelAndView("results");
 			mav.addObject("list", currentResults);
 			mav.addObject("searchResults", results);
@@ -108,12 +109,13 @@ public class RecipeController {
 	@RequestMapping("/display")
 	public ModelAndView showSingle(
 			RedirectAttributes redir,
-			@RequestParam(required=false) String uri
-			) {
-		if (uri.isEmpty() || uri == null) {
-			redir.addFlashAttribute("message", "Recipe not found");
-			return new ModelAndView("redirect:/search");
-		}
-		return new ModelAndView("display", "uri", uri);
+			@RequestParam("r") String uri) {
+		
+		Recipe recipe = apiServ.getOneRecipe(uri);
+		return new ModelAndView("display", "recipe", recipe);
+	}
+	@PostMapping("/display")
+	public ModelAndView redirectRecipe(String url) {
+		return new ModelAndView("redirect:" + url);
 	}
 }
