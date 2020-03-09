@@ -18,18 +18,6 @@
 	<div class="container-fluid">Displaying results
 		${searchResults.from} to ${searchResults.from + 10} of
 		${searchResults.count}</div>
-	<c:forEach items="${list}" var="item">
-		<div class="card border-info mb-3" style="max-width: 20rem;">
-		<p>${item.recipe.uri}</p>
-			<div class="card-header">${item.recipe.lbl}</div>
-			<div class="card-body">
-				<img src="${item.recipe.img}">
-				<p class="card-text">${item.recipe.dietLbl}and ${item.recipe.healthLbl}</p>
-				<form action="/display"><input type="hidden" name="r" value="${item.recipe.uri}"><button type="submit">View Recipe</button></form>
-			</div>
-		</div>
-	</c:forEach>
-<!--=======
 	<div class="contianer-fluid"><%@ include
 			file="partials/header.jsp"%>
 	</div>
@@ -91,7 +79,6 @@
 		</c:forEach>
 
 	</div>
->>>>>>> 49f2e7b81642b157b2723963e2549e15fb96375a -->
 	<div>
 		<ul class="pagination pagination-lg">
 			<c:if test="${searchResults.from != 0}">
