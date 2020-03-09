@@ -62,7 +62,10 @@
         		 				</c:if> </i>
 								</p>
 								<p class="card-text">
-									<a href="/display?uri=${item.uri}">Recipe</a>
+									<c:url var="displayUrl" value="/display">
+										<c:param name="uri" value="${item.uri}" />
+									</c:url>
+									<a href="${displayUrl}">Recipe</a>
 								<form action="/fav/add" method="post">
 									<input type="hidden" name="uri" value="${item.uri}">
 									<button type="submit" class="btn-success">Add to Favorites</button>
